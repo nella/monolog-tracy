@@ -36,6 +36,9 @@ class BlueScreenFactory
 	 */
 	public function registerInfo($text)
 	{
+		if (!is_string($text)) {
+			throw new \Nella\MonologTracy\Tracy\InfoMustBeStringException(gettype($text));
+		}
 		if (in_array($text, $this->info, TRUE)) {
 			return;
 		}
