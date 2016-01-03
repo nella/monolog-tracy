@@ -12,6 +12,7 @@
 namespace Nella\MonologTracy;
 
 use Monolog\Logger;
+use Nella\MonologTracy\Tracy\LoggerHelper;
 
 class BlueScreenHandlerTest extends \Nella\MonologTracy\TestCase
 {

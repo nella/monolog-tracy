@@ -8,7 +8,7 @@
  * please view the file LICENSE.md that was distributed with this source code.
  */
 
-namespace Nella\MonologTracy;
+namespace Nella\MonologTracy\Tracy;
 
 use DateTimeImmutable;
 use DateTimeInterface;

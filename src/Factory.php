@@ -7,6 +7,7 @@
 namespace Nella\MonologTracy;
 
 use Monolog\Logger;
+use Nella\MonologTracy\Tracy\LoggerHelper;
 use Tracy\BlueScreen;
 use Tracy\Debugger;
 
