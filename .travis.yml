@@ -26,4 +26,6 @@ script:
   - bin/phpunit --configuration tests/phpunit.xml tests
 
 after_success:
-  - composer require satooshi/php-coveralls 1.0.0 --no-interaction --prefer-source --no-progress --ignore-platform-reqs && bin/coveralls --verbose --config build/coveralls.yml || true
+  - wget https://github.com/satooshi/php-coveralls/releases/download/v1.0.0/coveralls.phar
+  - chmod +x coveralls.phar
+  - coveralls.phar --verbose --config build/coveralls.yml || true
