@@ -20,7 +20,7 @@
 		"issues": "https://github.com/pavelkucera/monolog-extensions/issues"
 	},
 	"require": {
-		"php": ">=5.3.1",
+		"php": "~5.6|~7.0",
 		"monolog/monolog": "~1.0",
 		"tracy/tracy": "~2.3.0"
 	},
