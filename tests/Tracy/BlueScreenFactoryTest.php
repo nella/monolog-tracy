@@ -80,8 +80,9 @@ class BlueScreenFactoryTest extends \Nella\MonologTracy\TestCase
 				'panel' => 'Test',
 			];
 		});
+		$blueScreen = $this->factory->create();
 
-		$this->assertTrue(TRUE);
+		$this->assertInstanceOf(BlueScreen::class, $blueScreen);
 	}
 
 	public function testRegisterPanelMultiple()
@@ -95,8 +96,9 @@ class BlueScreenFactoryTest extends \Nella\MonologTracy\TestCase
 
 		$this->factory->registerPanel($panel);
 		$this->factory->registerPanel($panel);
+		$blueScreen = $this->factory->create();
 
-		$this->assertTrue(TRUE);
+		$this->assertInstanceOf(BlueScreen::class, $blueScreen);
 	}
 
 	public function testCreate()
