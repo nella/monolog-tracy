@@ -24,6 +24,8 @@
 	<filter>
 		<whitelist processUncoveredFilesFromWhitelist="true">
 			<directory suffix=".php">../src</directory>
+			<exclude>../src/Exception.php</exclude>
+			<exclude>../src/Tracy/Exception.php</exclude>
 		</whitelist>
 	</filter>
 </phpunit>
