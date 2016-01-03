@@ -1,11 +1,10 @@
-kucera/monolog-extensions
+nella/monolog-tracy
 ======
-[![Build Status](https://travis-ci.org/pavelkucera/monolog-extensions.svg?branch=master)](https://travis-ci.org/pavelkucera/monolog-extensions)
-[![Downloads this Month](https://img.shields.io/packagist/dm/kucera/monolog-extensions.svg)](https://packagist.org/packages/kucera/monolog-extensions)
-[![Latest stable](https://img.shields.io/packagist/v/kucera/monolog-extensions.svg)](https://packagist.org/packages/kucera/monolog-extensions)
+[![Build Status](https://travis-ci.org/nella/monolog-tracy.svg?branch=master)](https://travis-ci.org/nella/monolog-tracy)
+[![Downloads this Month](https://img.shields.io/packagist/dm/nella/monolog-tracy.svg)](https://packagist.org/packages/nella/monolog-tracy)
+[![Latest stable](https://img.shields.io/packagist/v/nella/monolog-tracy.svg)](https://packagist.org/packages/nella/monolog-tracy)
 
-
-A set of [Monolog](http://github.com/seldaek/monolog) extensions.
+[Tracy](https://tracy.nette.org) handler for [Monolog](https://github.com/Seldaek/monolog).
 
 Installation
 ------------
@@ -13,7 +12,7 @@ Installation
 Using  [Composer](http://getcomposer.org/):
 
 ```sh
-$ composer require kucera/monolog-extensions:~0.1.0
+$ composer require nella/monolog-tracy:~0.1.0
 ```
 
 

@@ -1,6 +1,6 @@
 {
-	"name": "kucera/monolog-extensions",
-	"description": "A set of Monolog extensions.",
+	"name": "nella/monolog-tracy",
+	"description": "Tracy handler for Monolog",
 	"type": "library",
 	"keywords": ["Monolog", "Tracy", "log", "logging", "blue screen"],
 	"homepage": "https://github.com/pavelkucera/monolog-extensions",
