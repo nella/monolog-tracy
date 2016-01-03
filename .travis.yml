@@ -21,4 +21,5 @@ install:
   - composer update --no-interaction --prefer-source $COMPOSER_DEPENDENCIES_OPTIONS
 
 script:
+  - bin/parallel-lint -e php,phpt src tests
   - bin/phpunit --configuration tests/phpunit.xml tests
