@@ -51,6 +51,7 @@
 		"exclude": [
 			".gitattributes",
 			".gitignore",
+			"/build",
 			"/tests"
 		]
 	},
