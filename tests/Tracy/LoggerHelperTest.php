@@ -36,7 +36,7 @@ class LoggerHelperTest extends \Nella\MonologTracy\TestCase
 	}
 
 	/**
-	 * @expectedException \Nella\MonologTracy\NotSupportedException
+	 * @expectedException \Nella\MonologTracy\Tracy\NotSupportedException
 	 */
 	public function testLog()
 	{
@@ -44,7 +44,7 @@ class LoggerHelperTest extends \Nella\MonologTracy\TestCase
 	}
 
 	/**
-	 * @expectedException \Nella\MonologTracy\NotSupportedException
+	 * @expectedException \Nella\MonologTracy\Tracy\NotSupportedException
 	 */
 	public function testDefaultMailer()
 	{
@@ -52,7 +52,7 @@ class LoggerHelperTest extends \Nella\MonologTracy\TestCase
 	}
 
 	/**
-	 * @expectedException \Nella\MonologTracy\InvalidLogDirectoryException
+	 * @expectedException \Nella\MonologTracy\Tracy\InvalidLogDirectoryException
 	 */
 	public function testInvalidLogDirectory()
 	{

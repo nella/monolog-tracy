@@ -8,9 +8,9 @@
  * please view the file LICENSE.md that was distributed with this source code.
  */
 
-namespace Nella\MonologTracy;
+namespace Nella\MonologTracy\Tracy;
 
-class InvalidLogDirectoryException extends \LogicException implements \Nella\MonologTracy\Exception
+class InvalidLogDirectoryException extends \LogicException implements \Nella\MonologTracy\Tracy\Exception
 {
 
 	/** @var string */

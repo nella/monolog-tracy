@@ -25,7 +25,7 @@ class LoggerHelper extends \Tracy\Logger
 	{
 		$logDirectoryRealPath = realpath($directory);
 		if ($logDirectoryRealPath === FALSE || !is_dir($directory)) {
-			throw new \Nella\MonologTracy\InvalidLogDirectoryException(sprintf(
+			throw new \Nella\MonologTracy\Tracy\InvalidLogDirectoryException(sprintf(
 				'Tracy log directory "%s" not found or is not a directory.',
 				$directory
 			));
@@ -71,7 +71,7 @@ class LoggerHelper extends \Tracy\Logger
 	 */
 	public function log($message, $priority = self::INFO)
 	{
-		throw new \Nella\MonologTracy\NotSupportedException('LoggerHelper::log is not supported.');
+		throw new \Nella\MonologTracy\Tracy\NotSupportedException('LoggerHelper::log is not supported.');
 	}
 
 	/**
@@ -81,7 +81,7 @@ class LoggerHelper extends \Tracy\Logger
 	 */
 	protected function formatMessage($message)
 	{
-		throw new \Nella\MonologTracy\NotSupportedException('LoggerHelper::formatMessage is not supported.');
+		throw new \Nella\MonologTracy\Tracy\NotSupportedException('LoggerHelper::formatMessage is not supported.');
 	}
 
 	/**
@@ -92,7 +92,7 @@ class LoggerHelper extends \Tracy\Logger
 	 */
 	protected function formatLogLine($message, $exceptionFile = NULL)
 	{
-		throw new \Nella\MonologTracy\NotSupportedException('LoggerHelper::formatLogLine is not supported.');
+		throw new \Nella\MonologTracy\Tracy\NotSupportedException('LoggerHelper::formatLogLine is not supported.');
 	}
 
 	/**
@@ -102,7 +102,7 @@ class LoggerHelper extends \Tracy\Logger
 	 */
 	protected function sendEmail($message)
 	{
-		throw new \Nella\MonologTracy\NotSupportedException('LoggerHelper::sendEmail is not supported.');
+		throw new \Nella\MonologTracy\Tracy\NotSupportedException('LoggerHelper::sendEmail is not supported.');
 	}
 
 	/**
@@ -112,7 +112,7 @@ class LoggerHelper extends \Tracy\Logger
 	 */
 	public function defaultMailer($message, $email)
 	{
-		throw new \Nella\MonologTracy\NotSupportedException('LoggerHelper::defaultMailer is not supported.');
+		throw new \Nella\MonologTracy\Tracy\NotSupportedException('LoggerHelper::defaultMailer is not supported.');
 	}
 
 }
