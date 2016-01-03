@@ -4,9 +4,9 @@
  * Copyright (c) 2014 Pavel Kučera (http://github.com/pavelkucera)
  */
 
-namespace Kucera\Monolog;
+namespace Nella\Monolog;
 
-use Kucera\Monolog\Handler\BlueScreenHandler;
+use Nella\Monolog\Handler\BlueScreenHandler;
 use Monolog\Logger;
 use Tracy\BlueScreen;
 use Tracy\Debugger;

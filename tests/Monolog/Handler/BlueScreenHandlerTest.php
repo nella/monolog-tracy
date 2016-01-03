@@ -1,10 +1,10 @@
 <?php
 
-namespace Kucera\Monolog\Handler;
+namespace Nella\Monolog\Handler;
 
 use Monolog\Logger;
 
-class BlueScreenHandlerTest extends \Kucera\Monolog\TestCase
+class BlueScreenHandlerTest extends \Nella\Monolog\TestCase
 {
 
 	/** @var string */

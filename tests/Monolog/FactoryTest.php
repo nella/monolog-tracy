@@ -1,8 +1,8 @@
 <?php
 
-namespace Kucera\Monolog;
+namespace Nella\Monolog;
 
-class BlueScreenFactoryTest extends \Kucera\Monolog\TestCase
+class BlueScreenFactoryTest extends \Nella\Monolog\TestCase
 {
 
 	public function testBlueScreen()
@@ -14,7 +14,7 @@ class BlueScreenFactoryTest extends \Kucera\Monolog\TestCase
 	public function testBlueScreenHandler()
 	{
 		$handler = Factory::blueScreenHandler(__DIR__);
-		$this->assertInstanceOf('Kucera\Monolog\Handler\BlueScreenHandler', $handler);
+		$this->assertInstanceOf('Nella\Monolog\Handler\BlueScreenHandler', $handler);
 	}
 
 }
