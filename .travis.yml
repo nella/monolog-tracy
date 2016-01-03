@@ -26,4 +26,4 @@ script:
   - bin/phpunit --configuration tests/phpunit.xml tests
 
 after_success:
-  - composer require symfony/yaml 2.6 satooshi/php-coveralls dev-master#2fbf803 --no-interaction --prefer-source --no-progress --ignore-platform-reqs && bin/coveralls --verbose --config build/coveralls.yml || true
+  - composer require satooshi/php-coveralls 1.0.0 --no-interaction --prefer-source --no-progress --ignore-platform-reqs && bin/coveralls --verbose --config build/coveralls.yml || true
