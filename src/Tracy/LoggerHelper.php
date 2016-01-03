@@ -75,6 +75,7 @@ class LoggerHelper extends \Tracy\Logger
 	}
 
 	/**
+	 * @codeCoverageIgnore
 	 * @deprecated
 	 * @param string $message
 	 */
@@ -84,6 +85,7 @@ class LoggerHelper extends \Tracy\Logger
 	}
 
 	/**
+	 * @codeCoverageIgnore
 	 * @deprecated
 	 * @param string $message
 	 * @param string|NULL $exceptionFile
@@ -94,6 +96,7 @@ class LoggerHelper extends \Tracy\Logger
 	}
 
 	/**
+	 * @codeCoverageIgnore
 	 * @deprecated
 	 * @param string $message
 	 */

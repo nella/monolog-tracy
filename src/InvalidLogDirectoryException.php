@@ -31,6 +31,7 @@ class InvalidLogDirectoryException extends \LogicException implements \Nella\Mon
 	}
 
 	/**
+	 * @codeCoverageIgnore
 	 * @return string
 	 */
 	public function getLogDirectory()
