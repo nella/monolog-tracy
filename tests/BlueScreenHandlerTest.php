@@ -1,6 +1,6 @@
 <?php
 
-namespace Nella\MonologTracy\Handler;
+namespace Nella\MonologTracy;
 
 use Monolog\Logger;
 

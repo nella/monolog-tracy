@@ -5,7 +5,7 @@
  * Copyright (c) 2004 David Grudl (http://davidgrudl.com)
  */
 
-namespace Nella\MonologTracy\Handler;
+namespace Nella\MonologTracy;
 
 use Monolog\Logger;
 use Tracy\BlueScreen;

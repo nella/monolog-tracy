@@ -14,7 +14,7 @@ class FactoryTest extends \Nella\MonologTracy\TestCase
 	public function testBlueScreenHandler()
 	{
 		$handler = Factory::blueScreenHandler(__DIR__);
-		$this->assertInstanceOf('Nella\MonologTracy\Handler\BlueScreenHandler', $handler);
+		$this->assertInstanceOf('Nella\MonologTracy\BlueScreenHandler', $handler);
 	}
 
 }
