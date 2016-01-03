@@ -38,7 +38,8 @@ class Factory
 	public static function blueScreenHandler($logDirectory, $level = Logger::DEBUG, $bubble = TRUE, BlueScreen $blueScreen = NULL)
 	{
 		$blueScreen = $blueScreen !== NULL ? $blueScreen : static::blueScreen();
-		return new BlueScreenHandler($blueScreen, $logDirectory, $level, $bubble);
+		$loggerHelper = new LoggerHelper($logDirectory, $blueScreen);
+		return new BlueScreenHandler($loggerHelper, $level, $bubble);
 	}
 
 }

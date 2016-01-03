@@ -32,7 +32,7 @@ class BlueScreenHandlerTest extends \Nella\MonologTracy\TestCase
 
 		$blueScreen = new \Tracy\BlueScreen();
 		$this->loggerHelper = new LoggerHelper($logDirectory, $blueScreen);
-		$this->handler = new BlueScreenHandler($blueScreen, $logDirectory);
+		$this->handler = new BlueScreenHandler($this->loggerHelper);
 	}
 
 	public function testSkipsInvalidException()

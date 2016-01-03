@@ -12,7 +12,6 @@
 namespace Nella\MonologTracy;
 
 use Monolog\Logger;
-use Tracy\BlueScreen;
 
 class BlueScreenHandler extends \Monolog\Handler\AbstractProcessingHandler
 {
@@ -21,16 +20,15 @@ class BlueScreenHandler extends \Monolog\Handler\AbstractProcessingHandler
 	private $loggerHelper;
 
 	/**
-	 * @param BlueScreen $blueScreen
-	 * @param bool $logDirectory
+	 * @param LoggerHelper $loggerHelper
 	 * @param int $level
 	 * @param bool $bubble
 	 */
-	public function __construct(BlueScreen $blueScreen, $logDirectory, $level = Logger::DEBUG, $bubble = TRUE)
+	public function __construct(LoggerHelper $loggerHelper, $level = Logger::DEBUG, $bubble = TRUE)
 	{
 		parent::__construct($level, $bubble);
 
-		$this->loggerHelper = new LoggerHelper($logDirectory, $blueScreen);
+		$this->loggerHelper = $loggerHelper;
 	}
 
 	/**
