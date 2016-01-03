@@ -16,4 +16,4 @@ install:
   - composer install --no-interaction --prefer-source
 
 script:
-  - vendor/bin/phpunit --configuration tests/phpunit.xml tests
+  - bin/phpunit --configuration tests/phpunit.xml tests

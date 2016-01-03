@@ -17,15 +17,8 @@
 		}
 	],
 	"support": {
-		"issues": "https://github.com/pavelkucera/monolog-extensions/issues"
-	},
-	"require": {
-		"php": "~5.6|~7.0",
-		"monolog/monolog": "~1.0",
-		"tracy/tracy": "~2.3.0"
-	},
-	"require-dev": {
-		"phpunit/phpunit": "~4.1"
+		"issues": "https://github.com/nella/monolog-tracy/issues",
+		"source": "https://github.com/nella/monolog-tracy"
 	},
 	"autoload": {
 		"psr-4": {
@@ -37,9 +30,24 @@
 			"Nella\\Monolog\\": "tests/"
 		}
 	},
-	"extra": {
-		"branch-alias": {
-			"dev-master": "1.0-dev"
-		}
-	}
+	"require": {
+		"php": "~5.6|~7.0",
+		"monolog/monolog": "~1.0",
+		"tracy/tracy": "~2.3.0"
+	},
+	"require-dev": {
+		"phpunit/phpunit": "~4.1"
+	},
+	"config": {
+		"bin-dir": "bin"
+	},
+	"archive": {
+		"exclude": [
+			".gitattributes",
+			".gitignore",
+			"/tests"
+		]
+	},
+	"minimum-stability": "dev",
+	"prefer-stable": true
 }
