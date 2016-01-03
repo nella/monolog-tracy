@@ -30,8 +30,8 @@ class BlueScreenHandler extends \Monolog\Handler\AbstractProcessingHandler
 		parent::__construct($level, $bubble);
 
 		$logDirectoryRealPath = realpath($logDirectory);
-		if ($logDirectoryRealPath === FALSE) {
-			throw new \RuntimeException(sprintf(
+		if ($logDirectoryRealPath === FALSE || !is_dir($logDirectory)) {
+			throw new \Nella\MonologTracy\InvalidLogDirectoryException(sprintf(
 				'Tracy log directory "%s" not found or is not a directory.',
 				$logDirectory
 			));
