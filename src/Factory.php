@@ -15,16 +15,12 @@ class Factory
 {
 
 	/**
-	 * @param array $info
+	 * @param string[] $info
 	 * @return BlueScreen
 	 */
 	public static function blueScreen(array $info = [])
 	{
-		$factory = new BlueScreenFactory();
-		foreach ($info as $item) {
-			$factory->registerInfo($item);
-		}
-		return $factory->create();
+		return static::blueScreenFactory($info)->create();
 	}
 
 	/**
@@ -37,8 +33,31 @@ class Factory
 	public static function blueScreenHandler($logDirectory, $level = Logger::DEBUG, $bubble = TRUE, BlueScreen $blueScreen = NULL)
 	{
 		$blueScreen = $blueScreen !== NULL ? $blueScreen : static::blueScreen();
-		$loggerHelper = new LoggerHelper($logDirectory, $blueScreen);
+		$loggerHelper = static::loggerHelper($logDirectory, $blueScreen);
 		return new BlueScreenHandler($loggerHelper, $level, $bubble);
+	}
+
+	/**
+	 * @param string[] $info
+	 * @return BlueScreenFactory
+	 */
+	private static function blueScreenFactory(array $info = [])
+	{
+		$factory = new BlueScreenFactory();
+		foreach ($info as $item) {
+			$factory->registerInfo($item);
+		}
+		return $factory;
+	}
+
+	/**
+	 * @param string $logDirectory
+	 * @param BlueScreen $blueScreen
+	 * @return LoggerHelper
+	 */
+	private static function loggerHelper($logDirectory, BlueScreen $blueScreen)
+	{
+		return new LoggerHelper($logDirectory, $blueScreen);
 	}
 
 }
