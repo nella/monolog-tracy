@@ -1,8 +1,8 @@
 <?php
 
-namespace Nella\Monolog;
+namespace Nella\MonologTracy;
 
-class FactoryTest extends \Nella\Monolog\TestCase
+class FactoryTest extends \Nella\MonologTracy\TestCase
 {
 
 	public function testBlueScreen()
@@ -14,7 +14,7 @@ class FactoryTest extends \Nella\Monolog\TestCase
 	public function testBlueScreenHandler()
 	{
 		$handler = Factory::blueScreenHandler(__DIR__);
-		$this->assertInstanceOf('Nella\Monolog\Handler\BlueScreenHandler', $handler);
+		$this->assertInstanceOf('Nella\MonologTracy\Handler\BlueScreenHandler', $handler);
 	}
 
 }

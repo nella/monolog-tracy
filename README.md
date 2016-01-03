@@ -25,7 +25,7 @@ Converts your exception reports into beautiful and clear html files using [Tracy
 ### Tell me how!
 Just push the handler into the stack.
 ```php
-use Nella\Monolog\Factory;
+use Nella\MonologTracy\Factory;
 
 $logger = new Monolog\Logger('channel');
 
@@ -40,4 +40,4 @@ $logger->critical('Exception occured!', array(
 ```
 
 #### Tips
-You don't have to use the factory method, handler is instantiable on its own. `Nella\Monolog\Factory::blueScreen()` might come in handy then.
+You don't have to use the factory method, handler is instantiable on its own. `Nella\MonologTracy\Factory::blueScreen()` might come in handy then.

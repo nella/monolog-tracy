@@ -1,10 +1,10 @@
 <?php
 
-namespace Nella\Monolog\Handler;
+namespace Nella\MonologTracy\Handler;
 
 use Monolog\Logger;
 
-class BlueScreenHandlerTest extends \Nella\Monolog\TestCase
+class BlueScreenHandlerTest extends \Nella\MonologTracy\TestCase
 {
 
 	/** @var string */

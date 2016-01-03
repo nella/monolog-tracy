@@ -4,10 +4,10 @@
  * Copyright (c) 2014 Pavel Kučera (http://github.com/pavelkucera)
  */
 
-namespace Nella\Monolog;
+namespace Nella\MonologTracy;
 
 use Monolog\Logger;
-use Nella\Monolog\Handler\BlueScreenHandler;
+use Nella\MonologTracy\Handler\BlueScreenHandler;
 use Tracy\BlueScreen;
 use Tracy\Debugger;
 

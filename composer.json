@@ -22,12 +22,12 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"Nella\\Monolog\\": "src/"
+			"Nella\\MonologTracy\\": "src/"
 		}
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"Nella\\Monolog\\": "tests/"
+			"Nella\\MonologTracy\\": "tests/"
 		}
 	},
 	"require": {
