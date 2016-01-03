@@ -12,7 +12,7 @@ Installation
 Using  [Composer](http://getcomposer.org/):
 
 ```sh
-$ composer require nella/monolog-tracy:~0.1.0
+$ composer require nella/monolog-tracy
 ```
 
 
