@@ -1,4 +1,13 @@
 <?php
+/**
+ * This file is part of the Nella Project (https://monolog-tracy.nella.io).
+ *
+ * Copyright (c) 2014 Pavel Kučera (http://github.com/pavelkucera)
+ * Copyright (c) Patrik Votoček (http://patrik.votocek.cz)
+ *
+ * For the full copyright and license information,
+ * please view the file LICENSE.md that was distributed with this source code.
+ */
 
 namespace Nella\MonologTracy;
 
@@ -7,11 +16,11 @@ use Monolog\Logger;
 class BlueScreenHandlerTest extends \Nella\MonologTracy\TestCase
 {
 
-	/** @var string */
-	private $logDirectory;
-
 	/** @var BlueScreenHandler */
 	private $handler;
+
+	/** @var LoggerHelper */
+	private $loggerHelper;
 
 	public function setup()
 	{
@@ -20,9 +29,9 @@ class BlueScreenHandlerTest extends \Nella\MonologTracy\TestCase
 		if (@mkdir($logDirectory) === FALSE && !is_dir($logDirectory)) {
 			$this->fail(sprintf('Temp directory "%s" could not be created.', $logDirectory));
 		}
-		$this->logDirectory = $logDirectory;
 
 		$blueScreen = new \Tracy\BlueScreen();
+		$this->loggerHelper = new LoggerHelper($logDirectory, $blueScreen);
 		$this->handler = new BlueScreenHandler($blueScreen, $logDirectory);
 	}
 
@@ -48,32 +57,12 @@ class BlueScreenHandlerTest extends \Nella\MonologTracy\TestCase
 		$record = $this->createRecord($exception = new \Exception());
 		$this->handler->handle($record);
 
-		$hash = $this->handler->getExceptionHash($exception);
-		$file = $this->logDirectory . '/exception-2012-12-21-00-00-00-' . $hash . '.html';
-
-		$this->assertTrue(is_file($file));
-	}
-
-	public function testDoesNotSaveTwice()
-	{
-		// Save first
-		$record = $this->createRecord(new \Exception('message'));
-		$this->handler->handle($record);
-
-		// Handle  second
-		$record = $this->createRecord($exception = new \Exception('message'));
-		$record['datetime']->modify('+ 42 minutes');
-
-		$hash = $this->handler->getExceptionHash($exception);
-		$file = $this->logDirectory . '/exception-2012-12-21-00-42-00-' . $hash . '.html';
-
-		$this->assertFalse(is_file($file));
-		$this->assertSame(1, $this->countExceptionFiles());
+		$this->assertFileExists($this->loggerHelper->getExceptionFile($exception));
 	}
 
 	private function countExceptionFiles()
 	{
-		$directory = new \DirectoryIterator($this->logDirectory);
+		$directory = new \DirectoryIterator($this->loggerHelper->directory);
 		return (iterator_count($directory) - 2); // minus dotfiles
 	}
 
@@ -92,7 +81,7 @@ class BlueScreenHandlerTest extends \Nella\MonologTracy\TestCase
 			'level' => $level,
 			'level_name' => Logger::getLevelName($level),
 			'channel' => 'test',
-			'datetime' => new \DateTime('2012-12-21 00:00:00', new \DateTimeZone('UTC')),
+			'datetime' => new \DateTimeImmutable(),
 			'extra' => [],
 		];
 	}

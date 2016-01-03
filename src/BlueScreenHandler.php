@@ -1,8 +1,12 @@
 <?php
-
 /**
+ * This file is part of the Nella Project (https://monolog-tracy.nella.io).
+ *
  * Copyright (c) 2014 Pavel Kučera (http://github.com/pavelkucera)
- * Copyright (c) 2004 David Grudl (http://davidgrudl.com)
+ * Copyright (c) Patrik Votoček (http://patrik.votocek.cz)
+ *
+ * For the full copyright and license information,
+ * please view the file LICENSE.md that was distributed with this source code.
  */
 
 namespace Nella\MonologTracy;
@@ -13,11 +17,8 @@ use Tracy\BlueScreen;
 class BlueScreenHandler extends \Monolog\Handler\AbstractProcessingHandler
 {
 
-	/** @var BlueScreen */
-	private $blueScreen;
-
-	/** @var string */
-	private $logDirectory;
+	/** @var LoggerHelper */
+	private $loggerHelper;
 
 	/**
 	 * @param BlueScreen $blueScreen
@@ -29,16 +30,7 @@ class BlueScreenHandler extends \Monolog\Handler\AbstractProcessingHandler
 	{
 		parent::__construct($level, $bubble);
 
-		$logDirectoryRealPath = realpath($logDirectory);
-		if ($logDirectoryRealPath === FALSE || !is_dir($logDirectory)) {
-			throw new \Nella\MonologTracy\InvalidLogDirectoryException(sprintf(
-				'Tracy log directory "%s" not found or is not a directory.',
-				$logDirectory
-			));
-		}
-
-		$this->blueScreen = $blueScreen;
-		$this->logDirectory = $logDirectoryRealPath;
+		$this->loggerHelper = new LoggerHelper($logDirectory, $blueScreen);
 	}
 
 	/**
@@ -46,64 +38,16 @@ class BlueScreenHandler extends \Monolog\Handler\AbstractProcessingHandler
 	 */
 	protected function write(array $record)
 	{
-		if (!isset($record['context']['exception']) || !$record['context']['exception'] instanceof \Exception) {
+		if (!isset($record['context']['exception']) || (!$record['context']['exception'] instanceof \Exception
+			&& !$record['context']['exception'] instanceof \Throwable
+		)) {
 			return;
 		}
 		$exception = $record['context']['exception'];
 
-		$datetime = @$record['datetime']->format('Y-m-d-H-i-s');
-		$hash = $this->getExceptionHash($exception);
-		$filename = sprintf('exception-%s-%s.html', $datetime, $hash);
-
-		$save = TRUE;
-		foreach (new \DirectoryIterator($this->logDirectory) as $entry) {
-			// Exception already logged
-			if (strpos($entry, $hash) !== FALSE) {
-				$filename = $entry;
-				$save = FALSE;
-				break;
-			}
+		if (!file_exists($this->loggerHelper->getExceptionFile($exception))) {
+			$this->loggerHelper->renderToFile($exception);
 		}
-
-		if ($save === TRUE) {
-			$this->save($filename, $exception);
-		}
-	}
-
-	/**
-	 * @param \Exception $exception
-	 * @return string
-	 */
-	public function getExceptionHash(\Exception $exception)
-	{
-		return md5(preg_replace('~(Resource id #)\d+~', '$1', $exception));
-	}
-
-	/**
-	 * @param string $filename
-	 * @param \Exception $exception
-	 */
-	private function save($filename, \Exception $exception)
-	{
-		$path = $this->logDirectory . '/' . $filename;
-		if ($logHandle = @fopen($path, 'w')) {
-			ob_start(); // double buffer prevents sending HTTP headers in some PHP
-			ob_start(function ($buffer) use ($logHandle) {
-				fwrite($logHandle, $buffer);
-			}, 4096);
-			$this->blueScreen->render($exception);
-			ob_end_flush();
-			ob_end_clean();
-			fclose($logHandle);
-		}
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getLogDirectory()
-	{
-		return $this->logDirectory;
 	}
 
 }
