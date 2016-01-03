@@ -10,6 +10,8 @@
 
 namespace Nella\MonologTracy;
 
+use DateTimeImmutable;
+use DateTimeInterface;
 use Tracy\BlueScreen;
 
 class LoggerHelper extends \Tracy\Logger
@@ -34,11 +36,32 @@ class LoggerHelper extends \Tracy\Logger
 
 	/**
 	 * @param \Exception|\Throwable $exception
+	 * @param DateTimeInterface $datetime
 	 * @return string file path
 	 */
-	public function renderToFile($exception)
+	public function renderToFile($exception, DateTimeInterface $datetime = NULL)
 	{
-		return $this->logException($exception);
+		return $this->logException($exception, $this->getExceptionFile($exception, $datetime));
+	}
+
+	/**
+	 * @param \Exception|\Throwable $exception
+	 * @param DateTimeInterface $datetime
+	 * @return string
+	 */
+	public function getExceptionFile($exception, DateTimeInterface $datetime = NULL)
+	{
+		if ($datetime === NULL) {
+			$datetime = new DateTimeImmutable();
+		}
+		$dir = strtr($this->directory . '/', '\\/', DIRECTORY_SEPARATOR . DIRECTORY_SEPARATOR);
+		$hash = substr(md5(preg_replace('~(Resource id #)\d+~', '$1', $exception)), 0, 10);
+		foreach (new \DirectoryIterator($this->directory) as $file) {
+			if (strpos($file, $hash)) {
+				return $dir . $file;
+			}
+		}
+		return $dir . 'exception--' . $datetime->format('Y-m-d--H-i') . "--$hash.html";
 	}
 
 	/**

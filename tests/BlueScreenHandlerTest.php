@@ -57,7 +57,24 @@ class BlueScreenHandlerTest extends \Nella\MonologTracy\TestCase
 		$record = $this->createRecord($exception = new \Exception());
 		$this->handler->handle($record);
 
-		$this->assertFileExists($this->loggerHelper->getExceptionFile($exception));
+		$this->assertFileExists($this->loggerHelper->getExceptionFile($exception, $record['datetime']));
+		$this->assertSame(1, $this->countExceptionFiles());
+	}
+
+	public function testDoesNotSaveTwice()
+	{
+		// Save first
+		$record = $this->createRecord($exception = new \Exception('message'));
+		$this->handler->handle($record);
+		$datetime = $record['datetime'];
+
+		// Handle  second
+		$record = $this->createRecord($exception);
+		$record['datetime']->modify('+ 42 minutes');
+		$this->handler->handle($record);
+
+		$this->assertFileExists($this->loggerHelper->getExceptionFile($exception, $datetime));
+		$this->assertSame(1, $this->countExceptionFiles());
 	}
 
 	private function countExceptionFiles()
@@ -81,7 +98,7 @@ class BlueScreenHandlerTest extends \Nella\MonologTracy\TestCase
 			'level' => $level,
 			'level_name' => Logger::getLevelName($level),
 			'channel' => 'test',
-			'datetime' => new \DateTimeImmutable(),
+			'datetime' => new \DateTimeImmutable('2012-12-21 00:00:00', new \DateTimeZone('UTC')),
 			'extra' => [],
 		];
 	}
