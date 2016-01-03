@@ -9,7 +9,7 @@ class FactoryTest extends \Nella\MonologTracy\TestCase
 
 	public function testBlueScreen()
 	{
-		$blueScreen = Factory::blueScreen();
+		$blueScreen = Factory::blueScreen(['Test']);
 		$this->assertInstanceOf(BlueScreen::class, $blueScreen);
 	}
 
