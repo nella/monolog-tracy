@@ -6,6 +6,7 @@ The MIT License (MIT)
 
 ```
 Copyright (c) 2014 Pavel Kučera (http://github.com/pavelkucera)
+Copyright (c) 2016 Patrik Votoček (https://patrik.votocek.cz)
 ```
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
