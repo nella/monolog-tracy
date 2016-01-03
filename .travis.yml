@@ -7,6 +7,10 @@ php:
   - 7.0
   - hhvm
 
+env:
+  - # default environment without variables
+  - COMPOSER_DEPENDENCIES_OPTIONS="--prefer-lowest --prefer-stable"
+
 matrix:
   fast_finish: true
 
@@ -14,7 +18,7 @@ before_script:
   - composer self-update
 
 install:
-  - composer install --no-interaction --prefer-source
+  - composer update --no-interaction --prefer-source $COMPOSER_DEPENDENCIES_OPTIONS
 
 script:
   - bin/phpunit --configuration tests/phpunit.xml tests
