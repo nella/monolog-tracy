@@ -46,9 +46,18 @@ class LoggerHelperTest extends \Nella\MonologTracy\TestCase
 	/**
 	 * @expectedException \Nella\MonologTracy\NotSupportedException
 	 */
-	public function defaultMailer()
+	public function testDefaultMailer()
 	{
 		$this->loggerHelper->defaultMailer('Test', 'email@example.com');
+	}
+
+	/**
+	 * @expectedException \Nella\MonologTracy\InvalidLogDirectoryException
+	 */
+	public function testInvalidLogDirectory()
+	{
+		$logDirectory = sys_get_temp_dir() . '/' . getmypid() . microtime() . '-LoggerHelperTest';
+		new LoggerHelper($logDirectory, new \Tracy\BlueScreen());
 	}
 
 }
