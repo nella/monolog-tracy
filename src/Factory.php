@@ -11,6 +11,9 @@ use Nella\MonologTracy\Tracy\BlueScreenFactory;
 use Nella\MonologTracy\Tracy\LoggerHelper;
 use Tracy\BlueScreen;
 
+/**
+ * @deprecated
+ */
 class Factory
 {
 
