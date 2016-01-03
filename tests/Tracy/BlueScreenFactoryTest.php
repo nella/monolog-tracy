@@ -54,6 +54,16 @@ class BlueScreenFactoryTest extends \Nella\MonologTracy\TestCase
 		}));
 	}
 
+	public function testRegisterInfoServer()
+	{
+		$_SERVER['SERVER_SOFTWARE'] = 'Test';
+		$this->factory = new BlueScreenFactory();
+		$blueScreen = $this->factory->create();
+
+		$this->assertInstanceOf(BlueScreen::class, $blueScreen);
+		$this->assertTrue(in_array('Test', $blueScreen->info, TRUE));
+	}
+
 	/**
 	 * @expectedException \Nella\MonologTracy\Tracy\PanelIsNotCallableException
 	 */
