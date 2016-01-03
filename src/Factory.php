@@ -7,9 +7,9 @@
 namespace Nella\MonologTracy;
 
 use Monolog\Logger;
+use Nella\MonologTracy\Tracy\BlueScreenFactory;
 use Nella\MonologTracy\Tracy\LoggerHelper;
 use Tracy\BlueScreen;
-use Tracy\Debugger;
 
 class Factory
 {
@@ -20,13 +20,11 @@ class Factory
 	 */
 	public static function blueScreen(array $info = [])
 	{
-		$blueScreen = new BlueScreen();
-		$blueScreen->info = array_merge([
-			'PHP ' . PHP_VERSION,
-			isset($_SERVER['SERVER_SOFTWARE']) ? $_SERVER['SERVER_SOFTWARE'] : NULL,
-			'Tracy ' . Debugger::VERSION,
-		], $info);
-		return $blueScreen;
+		$factory = new BlueScreenFactory();
+		foreach ($info as $item) {
+			$factory->registerInfo($item);
+		}
+		return $factory->create();
 	}
 
 	/**
