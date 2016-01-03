@@ -1,6 +1,6 @@
 {
 	"name": "nella/monolog-tracy",
-	"description": "Tracy handler for Monolog",
+	"description": "Tracy BlueScreen handler for Monolog",
 	"type": "library",
 	"keywords": ["Monolog", "Tracy", "log", "logging", "blue screen"],
 	"homepage": "https://github.com/pavelkucera/monolog-extensions",
