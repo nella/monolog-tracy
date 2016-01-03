@@ -18,7 +18,7 @@ class BlueScreenHandlerTest extends \Nella\Monolog\TestCase
 		$logDirectory = sys_get_temp_dir() . '/' . getmypid() . microtime() . '-blueScreenHandlerTest';
 		@rmdir($logDirectory); // directory may not exist
 		if (@mkdir($logDirectory) === FALSE && !is_dir($logDirectory)) {
-			$this->fail("Temp directory '$logDirectory' could not be created.");
+			$this->fail(sprintf('Temp directory "%s" could not be created.', $logDirectory));
 		}
 		$this->logDirectory = $logDirectory;
 
@@ -49,7 +49,7 @@ class BlueScreenHandlerTest extends \Nella\Monolog\TestCase
 		$this->handler->handle($record);
 
 		$hash = $this->handler->getExceptionHash($exception);
-		$file = $this->logDirectory . "/exception-2012-12-21-00-00-00-$hash.html";
+		$file = $this->logDirectory . '/exception-2012-12-21-00-00-00-' . $hash . '.html';
 
 		$this->assertTrue(is_file($file));
 	}
@@ -65,7 +65,7 @@ class BlueScreenHandlerTest extends \Nella\Monolog\TestCase
 		$record['datetime']->modify('+ 42 minutes');
 
 		$hash = $this->handler->getExceptionHash($exception);
-		$file = $this->logDirectory . "/exception-2012-12-21-00-42-00-$hash.html";
+		$file = $this->logDirectory . '/exception-2012-12-21-00-42-00-' . $hash . '.html';
 
 		$this->assertFalse(is_file($file));
 		$this->assertSame(1, $this->countExceptionFiles());
@@ -84,17 +84,17 @@ class BlueScreenHandlerTest extends \Nella\Monolog\TestCase
 	 */
 	private function createRecord($exception = NULL, $level = Logger::CRITICAL)
 	{
-		return array(
+		return [
 			'message' => 'record',
-			'context' => array(
+			'context' => [
 				'exception' => $exception,
-			),
+			],
 			'level' => $level,
 			'level_name' => Logger::getLevelName($level),
 			'channel' => 'test',
 			'datetime' => new \DateTime('2012-12-21 00:00:00', new \DateTimeZone('UTC')),
-			'extra' => array(),
-		);
+			'extra' => [],
+		];
 	}
 
 }

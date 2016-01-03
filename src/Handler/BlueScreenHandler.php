@@ -53,7 +53,7 @@ class BlueScreenHandler extends \Monolog\Handler\AbstractProcessingHandler
 
 		$datetime = @$record['datetime']->format('Y-m-d-H-i-s');
 		$hash = $this->getExceptionHash($exception);
-		$filename = "exception-$datetime-$hash.html";
+		$filename = sprintf('exception-%s-%s.html', $datetime, $hash);
 
 		$save = TRUE;
 		foreach (new \DirectoryIterator($this->logDirectory) as $entry) {
@@ -85,10 +85,12 @@ class BlueScreenHandler extends \Monolog\Handler\AbstractProcessingHandler
 	 */
 	private function save($filename, \Exception $exception)
 	{
-		$path = $this->logDirectory . "/$filename";
+		$path = $this->logDirectory . '/' . $filename;
 		if ($logHandle = @fopen($path, 'w')) {
 			ob_start(); // double buffer prevents sending HTTP headers in some PHP
-			ob_start(function($buffer) use ($logHandle) { fwrite($logHandle, $buffer); }, 4096);
+			ob_start(function ($buffer) use ($logHandle) {
+				fwrite($logHandle, $buffer);
+			}, 4096);
 			$this->blueScreen->render($exception);
 			ob_end_flush();
 			ob_end_clean();

@@ -2,7 +2,7 @@
 
 namespace Nella\Monolog;
 
-class BlueScreenFactoryTest extends \Nella\Monolog\TestCase
+class FactoryTest extends \Nella\Monolog\TestCase
 {
 
 	public function testBlueScreen()

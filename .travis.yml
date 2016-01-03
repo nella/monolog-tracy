@@ -22,4 +22,5 @@ install:
 
 script:
   - bin/parallel-lint -e php,phpt src tests
+  - bin/phpcs -sp --standard=vendor/nella/coding-standard/Nella/ruleset.xml src tests
   - bin/phpunit --configuration tests/phpunit.xml tests
