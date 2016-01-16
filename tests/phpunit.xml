@@ -9,6 +9,11 @@
 	beStrictAboutTestsThatDoNotTestAnything="true"
 	beStrictAboutTodoAnnotatedTests="true"
 >
+	<testsuites>
+		<testsuite name="MonologTracy">
+			<directory suffix="Test.php">./</directory>
+		</testsuite>
+	</testsuites>
 	<logging>
 		<log
 			type="coverage-clover"
