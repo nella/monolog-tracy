@@ -38,7 +38,7 @@ class BlueScreenHandlerTest extends \Nella\MonologTracy\TestCase
 
 	public function testSkipsInvalidException()
 	{
-		$record = $this->createRecord($exception = 'Something weird is happening.');
+		$record = $this->createRecord('Something weird is happening.');
 		$this->handler->handle($record);
 
 		$this->assertSame(0, $this->countExceptionFiles());
