@@ -58,7 +58,7 @@ class LoggerHelper extends \Tracy\Logger
 	 * @param DateTimeInterface $datetime
 	 * @return string
 	 */
-	public function getExceptionFile($exception, DateTimeInterface $datetime = NULL)
+	public function formatExceptionFilePath($exception, DateTimeInterface $datetime = NULL)
 	{
 		if ($datetime === NULL) {
 			$datetime = new DateTimeImmutable();
@@ -71,6 +71,17 @@ class LoggerHelper extends \Tracy\Logger
 			}
 		}
 		return $dir . 'exception--' . $datetime->format('Y-m-d--H-i') . '--' . $hash . '.html';
+	}
+
+	/**
+	 * @deprecated
+	 * @param \Exception|\Throwable $exception
+	 * @param DateTimeInterface $datetime
+	 * @return string
+	 */
+	public function getExceptionFile($exception, DateTimeInterface $datetime = NULL)
+	{
+		return $this->formatExceptionFilePath($exception, $datetime);
 	}
 
 	/**
