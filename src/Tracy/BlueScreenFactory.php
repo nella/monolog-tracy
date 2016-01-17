@@ -22,6 +22,9 @@ class BlueScreenFactory
 	/** @var callable[] */
 	private $panels = [];
 
+	/** @var string[] */
+	private $collapsePaths = [];
+
 	public function __construct()
 	{
 		$this->registerInfo('PHP ' . PHP_VERSION);
@@ -61,6 +64,15 @@ class BlueScreenFactory
 		$this->panels[] = $callback;
 	}
 
+	public function registerCollapsePath($collapsePath)
+	{
+		if (!is_string($collapsePath)) {
+			throw new \Nella\MonologTracy\Tracy\CollapsePathMustBeStringException(gettype($collapsePath));
+		}
+
+		$this->collapsePaths[] = $collapsePath;
+	}
+
 	/**
 	 * @return BlueScreen
 	 */
@@ -71,6 +83,7 @@ class BlueScreenFactory
 		foreach ($this->panels as $panel) {
 			$blueScreen->addPanel($panel);
 		}
+		$blueScreen->collapsePaths = $this->collapsePaths;
 
 		return $blueScreen;
 	}

@@ -101,6 +101,25 @@ class BlueScreenFactoryTest extends \Nella\MonologTracy\TestCase
 		$this->assertInstanceOf(BlueScreen::class, $blueScreen);
 	}
 
+	/**
+	 * @expectedException \Nella\MonologTracy\Tracy\CollapsePathMustBeStringException
+	 */
+	public function testRegisterInvalidCollapsePath()
+	{
+		$this->factory->registerCollapsePath(NULL);
+	}
+
+	public function testRegisterCollapsePath()
+	{
+		$this->factory->registerCollapsePath(__DIR__);
+		$blueScreen = $this->factory->create();
+
+		$this->assertInstanceOf(BlueScreen::class, $blueScreen);
+		$this->assertCount(1, $blueScreen->collapsePaths);
+		$this->assertArrayHasKey(0, $blueScreen->collapsePaths);
+		$this->assertSame(__DIR__, $blueScreen->collapsePaths[0]);
+	}
+
 	public function testCreate()
 	{
 		$blueScreen = $this->factory->create();
