@@ -55,6 +55,7 @@
 			checkreturn="true"
 		>
 			<arg value="validate"/>
+			<arg value="--no-check-lock"/>
 		</exec>
 	</target>
 
