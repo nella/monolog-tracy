@@ -1,0 +1,34 @@
+build: off
+cache:
+  - c:\php -> appveyor.yml
+  - '%LOCALAPPDATA%\Composer\files -> appveyor.yml'
+
+clone_folder: c:\projects\monolog-tracy
+
+init:
+  - SET PATH=c:\php;%PATH%
+  - SET PHP=1
+  - SET ANSICON=121x90 (121x90)
+
+install:
+  # Install PHP
+  - IF EXIST c:\php (SET PHP=0) ELSE (mkdir c:\php)
+  - IF %PHP%==1 cd c:\php
+  - IF %PHP%==1 appveyor DownloadFile http://windows.php.net/downloads/releases/archives/php-7.0.1-Win32-VC14-x86.zip
+  - IF %PHP%==1 7z x php-7.0.1-Win32-VC14-x86.zip >nul
+  - IF %PHP%==1 echo extension_dir=ext >> php.ini
+  - IF %PHP%==1 echo extension=php_openssl.dll >> php.ini
+  - IF %PHP%==1 del /Q *.zip
+  - IF %PHP%==1 appveyor DownloadFile http://xdebug.org/files/php_xdebug-2.4.0rc3-7.0-vc14.dll
+  - IF %PHP%==1 echo [xdebug] >> php.ini
+  - IF %PHP%==1 echo zend_extension=c:\php\php_xdebug-2.4.0rc3-7.0-vc14.dll >> php.ini
+  - cd c:\projects\monolog-tracy
+
+  # Install Nette Tester
+  - appveyor DownloadFile https://getcomposer.org/composer.phar
+  - php composer.phar update --no-interaction --prefer-source
+
+test_script:
+  - bin/parallel-lint -e php,phpt src tests
+  - bin/phpcs -sp --standard=vendor/nella/coding-standard/Nella/ruleset.xml src tests
+  - bin/phpunit --configuration tests/phpunit.xml tests
