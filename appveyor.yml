@@ -1,9 +1,13 @@
-build: off
+build: false
+platform: x86
+clone_folder: c:\projects\monolog-tracy
+
+matrix:
+  fast_finish: true
+
 cache:
   - c:\php -> appveyor.yml
-  - '%LOCALAPPDATA%\Composer\files -> appveyor.yml'
-
-clone_folder: c:\projects\monolog-tracy
+  - c:\projects\monolog-tracy-bundle\vendor -> appveyor.yml
 
 init:
   - SET PATH=c:\php;%PATH%
