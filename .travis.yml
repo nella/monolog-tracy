@@ -21,9 +21,7 @@ install:
   - composer update --no-interaction --prefer-source $COMPOSER_DEPENDENCIES_OPTIONS
 
 script:
-  - bin/parallel-lint -e php,phpt src tests
-  - bin/phpcs -sp --standard=vendor/nella/coding-standard/Nella/ruleset.xml src tests
-  - bin/phpunit --configuration tests/phpunit.xml tests
+  - bin/phing ci-build
 
 after_success:
   - wget https://github.com/satooshi/php-coveralls/releases/download/v1.0.0/coveralls.phar
