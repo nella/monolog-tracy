@@ -42,9 +42,6 @@
 		"phing/phing": "2.13.0",
 		"phpunit/phpunit": "5.1.4"
 	},
-	"replace": {
-		"kucera/monolog-extensions": "~0.1"
-	},
 	"config": {
 		"bin-dir": "bin"
 	},
