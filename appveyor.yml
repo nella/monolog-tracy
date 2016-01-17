@@ -7,7 +7,7 @@ matrix:
 
 cache:
   - c:\php -> appveyor.yml
-  - c:\projects\monolog-tracy-bundle\vendor -> appveyor.yml
+  - c:\projects\monolog-tracy\vendor -> appveyor.yml
 
 init:
   - SET PATH=c:\php;%PATH%
