@@ -40,6 +40,7 @@
 		"jakub-onderka/php-parallel-lint": "0.9.2",
 		"nella/coding-standard": "4.1.0",
 		"phing/phing": "2.13.0",
+		"phpstan/phpstan": "dev-dev#3ba62cbb49ed8594fe88d273dbc42609e629545e",
 		"phpunit/phpunit": "5.1.4"
 	},
 	"replace": {

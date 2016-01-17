@@ -37,7 +37,7 @@ install:
 
   # Composer
   - composer self-update
-  - composer update --no-interaction --prefer-source
+  - composer update --no-interaction --prefer-source --ignore-platform-reqs
 
 test_script:
   - bin/phing ci-build

@@ -18,7 +18,7 @@ before_script:
   - composer self-update
 
 install:
-  - composer update --no-interaction --prefer-source $COMPOSER_DEPENDENCIES_OPTIONS
+  - composer update --no-interaction --prefer-source --ignore-platform-reqs $COMPOSER_DEPENDENCIES_OPTIONS
 
 script:
   - bin/phing ci-build
