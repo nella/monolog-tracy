@@ -7,6 +7,7 @@
 [![Composer Downloads](https://img.shields.io/packagist/dt/nella/monolog-tracy.svg?style=flat-square)](https://packagist.org/packages/nella/monolog-tracy)
 [![Dependency Status](https://img.shields.io/versioneye/d/user/projects/5688ba47eb4f470030000b3f.svg?style=flat-square)](https://www.versioneye.com/user/projects/5688ba47eb4f470030000b3f)
 [![HHVM Status](https://img.shields.io/hhvm/nella/monolog-tracy.svg?style=flat-square)](http://hhvm.h4cc.de/package/nella/monolog-tracy)
+![License MIT, GPL-2, GPL-3](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)
 
 ## Installation
 
