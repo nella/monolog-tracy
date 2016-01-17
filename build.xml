@@ -12,8 +12,6 @@
 	<property name="path.phplint.executable" value="${path.bin}/parallel-lint"/>
 	<property name="path.phpunit.configuration" value="${path.tests}/phpunit.xml"/>
 	<property name="path.phpunit.executable" value="${path.bin}/phpunit"/>
-	<property name="path.phpstan.executable" value="${path.bin}/phpstan"/>
-	<property name="path.phpstan.configuration" value="${path.build}/phpstan.neon"/>
 	<property name="path.root" value="${project.basedir}"/>
 	<property name="path.src" value="${path.root}/src"/>
 	<property name="path.tests" value="${path.root}/tests"/>
@@ -32,7 +30,6 @@
 	<target name="check" depends="
 		phplint,
 		cs,
-		phpstan,
 		tests
 	"/>
 
@@ -85,30 +82,6 @@
 			<arg path="${path.src}"/>
 			<arg path="${path.tests}"/>
 		</exec>
-	</target>
-
-	<target name="phpstan">
-		<php expression="PHP_VERSION_ID >= 70000 ? 'true' : 'false'" returnProperty="isPHP7" level="verbose" />
-		<if>
-			<equals arg1="${isPHP7}" arg2="true" />
-			<then>
-				<exec
-					executable="${path.phpstan.executable}"
-					logoutput="true"
-					passthru="true"
-					checkreturn="true"
-				>
-					<arg value="analyse"/>
-					<arg value="-c"/>
-					<arg path="${path.phpstan.configuration}"/>
-					<arg path="${path.src}"/>
-					<arg path="${path.tests}"/>
-				</exec>
-			</then>
-			<else>
-				<echo message="PHPStan requires PHP 7." />
-			</else>
-		</if>
 	</target>
 
 	<target name="tests">

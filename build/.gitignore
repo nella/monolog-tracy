@@ -1,4 +1,3 @@
 *
 !.gitignore
 !coveralls.yml
-!phpstan.neon
