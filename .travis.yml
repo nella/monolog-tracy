@@ -14,7 +14,7 @@ env:
 matrix:
   fast_finish: true
 
-before_script:
+before_install:
   - composer self-update
 
 install:
