@@ -28,9 +28,9 @@ install:
   - IF %PHP%==1 appveyor DownloadFile https://getcomposer.org/composer.phar
   - IF %PHP%==1 echo @php %%~dp0composer.phar %%* > composer.bat
   # Install Xdebug
-  - IF %PHP%==1 appveyor DownloadFile http://xdebug.org/files/php_xdebug-2.4.0rc3-7.0-vc14.dll
+  - IF %PHP%==1 appveyor DownloadFile http://xdebug.org/files/php_xdebug-2.4.0-7.0-vc14.dll
   - IF %PHP%==1 echo [xdebug] >> php.ini
-  - IF %PHP%==1 echo zend_extension=c:\php\php_xdebug-2.4.0rc3-7.0-vc14.dll >> php.ini
+  - IF %PHP%==1 echo zend_extension=c:\php\php_xdebug-2.4.0-7.0-vc14.dll >> php.ini
 
   # Go to project folder
   - cd c:\projects\monolog-tracy
