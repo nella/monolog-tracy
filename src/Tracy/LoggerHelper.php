@@ -70,7 +70,7 @@ class LoggerHelper extends \Tracy\Logger
 				return $dir . $file;
 			}
 		}
-		return $dir . 'exception--' . $datetime->format('Y-m-d--H-i') . '--' . $hash . '.html';
+		return $dir . 'exception--' . $datetime->format('Y-m-d--H-i-s') . '--' . $hash . '.html';
 	}
 
 	/**
