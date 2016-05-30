@@ -10,6 +10,8 @@
 [![HHVM Status](https://img.shields.io/hhvm/nella/monolog-tracy.svg?style=flat-square)](http://hhvm.h4cc.de/package/nella/monolog-tracy)
 ![License MIT, GPL-2, GPL-3](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)
 
+Sponzored by [Shipito LLC](https://www.shipito.com).
+
 ## Installation
 
 Using  [Composer](http://getcomposer.org/):
