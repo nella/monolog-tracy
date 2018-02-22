@@ -4,7 +4,7 @@
 	"type": "library",
 	"keywords": ["Monolog", "Tracy", "log", "logging", "blue screen"],
 	"homepage": "https://github.com/pavelkucera/monolog-extensions",
-	"license": ["MIT", "GPL-2.0", "GPL-3.0"],
+	"license": ["MIT", "GPL-2.0-only", "GPL-3.0-only"],
 	"authors": [
 		{
 			"name": "Pavel Kučera",
