@@ -10,7 +10,7 @@
 
 namespace Nella\MonologTracy\Tracy;
 
-class InvalidLogDirectoryException extends \LogicException implements \Nella\MonologTracy\Tracy\Exception
+class LogDirectoryCouldNotBeCreatedException extends \LogicException implements \Nella\MonologTracy\Tracy\Exception
 {
 
 	/** @var string */
@@ -23,7 +23,7 @@ class InvalidLogDirectoryException extends \LogicException implements \Nella\Mon
 	public function __construct($logDirectory, \Exception $previous = NULL)
 	{
 		parent::__construct(sprintf(
-			'Tracy log directory "%s" not found or is not a directory.',
+			'Tracy log directory "%s" could not be created or is not a directory.',
 			$logDirectory
 		), 0, $previous);
 

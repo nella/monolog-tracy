@@ -23,14 +23,16 @@ class LoggerHelper extends \Tracy\Logger
 	 */
 	public function __construct($directory, BlueScreen $blueScreen)
 	{
-		$logDirectoryRealPath = realpath($directory);
-		if ($logDirectoryRealPath === FALSE || !is_dir($directory)) {
-			throw new \Nella\MonologTracy\Tracy\InvalidLogDirectoryException(sprintf(
-				'Tracy log directory "%s" not found or is not a directory.',
-				$directory
-			));
+		if (!is_dir($directory)) {
+			if (!@mkdir($directory, 0777, TRUE) && !is_dir($directory)) {
+				throw new \Nella\MonologTracy\Tracy\LogDirectoryCouldNotBeCreatedException(sprintf(
+					'Tracy log Directory "%s" could not be created.',
+					$directory
+				));
+			}
 		}
 
+		$logDirectoryRealPath = realpath($directory);
 		parent::__construct($logDirectoryRealPath, NULL, $blueScreen);
 	}
 

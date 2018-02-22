@@ -51,12 +51,19 @@ class LoggerHelperTest extends \Nella\MonologTracy\TestCase
 		$this->loggerHelper->defaultMailer('Test', 'email@example.com');
 	}
 
-	/**
-	 * @expectedException \Nella\MonologTracy\Tracy\InvalidLogDirectoryException
-	 */
-	public function testInvalidLogDirectory()
+	public function testLogDirectoryCannotBeCreatedIfThereIsFileWithSameName()
 	{
-		$logDirectory = sys_get_temp_dir() . '/' . getmypid() . microtime() . '-LoggerHelperTest';
+		$logDirectoryParent = sys_get_temp_dir() . '/' . getmypid() . microtime() . '-LoggerHelperTest';
+		$logDirectory = $logDirectoryParent . '/logdir';
+
+		mkdir($logDirectoryParent);
+
+		// create a dummy file with the same name as the log directory
+		file_put_contents($logDirectoryParent . '/logdir', 'dummy');
+		$this->assertFileExists($logDirectory);
+
+		$this->expectException(\Nella\MonologTracy\Tracy\LogDirectoryCouldNotBeCreatedException::class);
+
 		new LoggerHelper($logDirectory, new \Tracy\BlueScreen());
 	}
 
