@@ -52,7 +52,17 @@ class LoggerHelper extends \Tracy\Logger
 	 */
 	public function getExceptionHash($exception)
 	{
-		return substr(md5(preg_replace('~(Resource id #)\d+~', '$1', $exception)), 0, 10);
+		$tracyExceptionFilePath = parent::getExceptionFile($exception);
+		$matches = [];
+		preg_match('~^.*--(?P<hash>[a-fA-F0-9]+).html$~', $tracyExceptionFilePath, $matches);
+		if (!isset($matches['hash'])) {
+			// @codeCoverageIgnoreStart
+			// not testable since it would be eventually coming from parent
+			throw new \Nella\MonologTracy\Tracy\NotSupportedException('Non-compatible exception file name -> unexpected Tracy version.');
+		}
+		// @codeCoverageIgnoreEnd
+
+		return $matches['hash'];
 	}
 
 	/**
