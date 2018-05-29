@@ -137,14 +137,4 @@ class LoggerHelper extends \Tracy\Logger
 		throw new \Nella\MonologTracy\Tracy\NotSupportedException('LoggerHelper::sendEmail is not supported.');
 	}
 
-	/**
-	 * @deprecated
-	 * @param string $message
-	 * @param string $email
-	 */
-	public function defaultMailer($message, $email)
-	{
-		throw new \Nella\MonologTracy\Tracy\NotSupportedException('LoggerHelper::defaultMailer is not supported.');
-	}
-
 }
