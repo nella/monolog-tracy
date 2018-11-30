@@ -111,7 +111,7 @@ class LoggerHelper extends \Tracy\Logger
 	 * @deprecated
 	 * @param string $message
 	 */
-	protected function formatMessage($message)
+	public static function formatMessage($message)
 	{
 		throw new \Nella\MonologTracy\Tracy\NotSupportedException('LoggerHelper::formatMessage is not supported.');
 	}
@@ -122,7 +122,7 @@ class LoggerHelper extends \Tracy\Logger
 	 * @param string $message
 	 * @param string|NULL $exceptionFile
 	 */
-	protected function formatLogLine($message, $exceptionFile = NULL)
+	public static function formatLogLine($message, $exceptionFile = NULL)
 	{
 		throw new \Nella\MonologTracy\Tracy\NotSupportedException('LoggerHelper::formatLogLine is not supported.');
 	}
