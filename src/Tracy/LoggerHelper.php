@@ -67,14 +67,10 @@ class LoggerHelper extends \Tracy\Logger
 
 	/**
 	 * @param \Exception|\Throwable $exception
-	 * @param DateTimeInterface $datetime
 	 * @return string
 	 */
-	public function formatExceptionFilePath($exception, DateTimeInterface $datetime = NULL)
+	public function formatExceptionFilePath($exception)
 	{
-		if ($datetime === NULL) {
-			$datetime = new DateTimeImmutable();
-		}
 		$dir = strtr($this->directory . '/', '\\/', DIRECTORY_SEPARATOR . DIRECTORY_SEPARATOR);
 		$hash = $this->getExceptionHash($exception);
 		foreach (new \DirectoryIterator($this->directory) as $file) {
@@ -82,18 +78,17 @@ class LoggerHelper extends \Tracy\Logger
 				return $dir . $file;
 			}
 		}
-		return $dir . 'exception--' . $datetime->format('Y-m-d--H-i-s') . '--' . $hash . '.html';
+		return $dir . 'exception--' . (new DateTimeImmutable())->format('Y-m-d--H-i-s') . '--' . $hash . '.html';
 	}
 
 	/**
 	 * @deprecated
 	 * @param \Exception|\Throwable $exception
-	 * @param DateTimeInterface $datetime
 	 * @return string
 	 */
-	public function getExceptionFile($exception, DateTimeInterface $datetime = NULL)
+	public function getExceptionFile(\Throwable $exception): string
 	{
-		return $this->formatExceptionFilePath($exception, $datetime);
+		return $this->formatExceptionFilePath($exception);
 	}
 
 	/**
@@ -111,7 +106,7 @@ class LoggerHelper extends \Tracy\Logger
 	 * @deprecated
 	 * @param string $message
 	 */
-	public static function formatMessage($message)
+	public static function formatMessage($message): string
 	{
 		throw new \Nella\MonologTracy\Tracy\NotSupportedException('LoggerHelper::formatMessage is not supported.');
 	}
@@ -122,7 +117,7 @@ class LoggerHelper extends \Tracy\Logger
 	 * @param string $message
 	 * @param string|NULL $exceptionFile
 	 */
-	public static function formatLogLine($message, $exceptionFile = NULL)
+	public static function formatLogLine($message, string $exceptionFile = NULL): string
 	{
 		throw new \Nella\MonologTracy\Tracy\NotSupportedException('LoggerHelper::formatLogLine is not supported.');
 	}
@@ -132,7 +127,7 @@ class LoggerHelper extends \Tracy\Logger
 	 * @deprecated
 	 * @param string $message
 	 */
-	protected function sendEmail($message)
+	protected function sendEmail($message): void
 	{
 		throw new \Nella\MonologTracy\Tracy\NotSupportedException('LoggerHelper::sendEmail is not supported.');
 	}
