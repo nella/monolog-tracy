@@ -43,7 +43,7 @@ class LoggerHelper extends \Tracy\Logger
 	 */
 	public function renderToFile($exception, DateTimeInterface $datetime = NULL)
 	{
-		return $this->logException($exception, $this->getExceptionFile($exception, $datetime));
+		return $this->logException($exception, $this->getExceptionFile($exception));
 	}
 
 	/**
@@ -84,9 +84,10 @@ class LoggerHelper extends \Tracy\Logger
 	/**
 	 * @deprecated
 	 * @param \Exception|\Throwable $exception
+	 * @param string $level
 	 * @return string
 	 */
-	public function getExceptionFile(\Throwable $exception): string
+	public function getExceptionFile(\Throwable $exception, string $level = self::EXCEPTION): string
 	{
 		return $this->formatExceptionFilePath($exception);
 	}

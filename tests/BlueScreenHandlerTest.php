@@ -58,7 +58,7 @@ class BlueScreenHandlerTest extends \Nella\MonologTracy\TestCase
 		$record = $this->createRecord($exception = new \Exception());
 		$this->handler->handle($record);
 
-		$this->assertFileExists($this->loggerHelper->getExceptionFile($exception, $record['datetime']));
+		$this->assertFileExists($this->loggerHelper->getExceptionFile($exception));
 		$this->assertSame(1, $this->countExceptionFiles());
 	}
 
@@ -67,14 +67,13 @@ class BlueScreenHandlerTest extends \Nella\MonologTracy\TestCase
 		// Save first
 		$record = $this->createRecord($exception = new \Exception('message'));
 		$this->handler->handle($record);
-		$datetime = $record['datetime'];
 
 		// Handle  second
 		$record = $this->createRecord($exception);
 		$record['datetime']->modify('+ 42 minutes');
 		$this->handler->handle($record);
 
-		$this->assertFileExists($this->loggerHelper->getExceptionFile($exception, $datetime));
+		$this->assertFileExists($this->loggerHelper->getExceptionFile($exception));
 		$this->assertSame(1, $this->countExceptionFiles());
 	}
 

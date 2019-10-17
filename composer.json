@@ -33,7 +33,7 @@
 	"require": {
 		"php": "~7.1",
 		"monolog/monolog": "~1.1",
-		"tracy/tracy": "~2.6.0"
+		"tracy/tracy": "~2.7.0"
 	},
 	"require-dev": {
 		"jakub-onderka/php-console-highlighter": "0.3.2",
