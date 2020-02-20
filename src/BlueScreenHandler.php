@@ -35,7 +35,7 @@ class BlueScreenHandler extends \Monolog\Handler\AbstractProcessingHandler
 	/**
 	 * @param array $record
 	 */
-	protected function write(array $record)
+	protected function write(array $record): void
 	{
 		if (!isset($record['context']['exception']) || (!$record['context']['exception'] instanceof \Exception
 			&& !$record['context']['exception'] instanceof \Throwable
