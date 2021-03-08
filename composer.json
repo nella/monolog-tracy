@@ -53,6 +53,7 @@
 			"/tests"
 		]
 	},
+	"abandoned": "mangoweb/monolog-tracy-handler",
 	"minimum-stability": "dev",
 	"prefer-stable": true
 }
